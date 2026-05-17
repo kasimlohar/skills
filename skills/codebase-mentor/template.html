@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEACHING_SESSION_TITLE</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6; color: #e0e0e0; background: #000000;
+    max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.8rem; margin-bottom: 0.25rem; color: #ffffff; }
+  h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; padding-bottom: 0.3rem; border-bottom: 2px solid #333333; color: #e0e0e0; }
+  h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #e0e0e0; }
+  .meta { color: #757575; font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .meta span { margin-right: 1rem; }
+
+  .diagram-box {
+    background: #000000; border: 1px solid #333333; border-radius: 8px;
+    padding: 1.5rem; margin: 1rem 0; overflow-x: auto;
+  }
+  .diagram-box svg { display: block; margin: 0 auto; max-width: 100%; }
+
+  .code-block {
+    background: #0d0d0d; color: #e0e0e0; border-radius: 8px;
+    border: 1px solid #333333;
+    padding: 1rem 1rem 1rem 0; margin: 1rem 0; overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.85rem;
+    line-height: 1.5; counter-reset: line;
+  }
+  .code-line { display: flex; padding: 0 1rem; }
+  .code-line:hover { background: rgba(255,255,255,0.03); }
+  .line-num {
+    counter-increment: line; user-select: none; color: #424242;
+    width: 3ch; text-align: right; padding-right: 1.5rem; flex-shrink: 0;
+  }
+  .line-num::before { content: counter(line); }
+  .code-content { color: #e0e0e0; }
+  .annotation-marker {
+    display: inline-block; background: #448aff; color: #000000;
+    border-radius: 3px; font-size: 0.7rem; padding: 0 0.3rem;
+    cursor: help; font-weight: 600; vertical-align: top;
+  }
+
+  .analogy-box {
+    background: rgba(68,136,255,0.08); border-left: 4px solid #448aff; border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem; margin: 1rem 0;
+  }
+  .analogy-box .label { font-weight: 600; color: #448aff; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+
+  details {
+    background: #212121; border: 1px solid #333333; border-radius: 8px;
+    margin: 0.75rem 0; overflow: hidden;
+  }
+  details summary {
+    padding: 0.75rem 1rem; cursor: pointer; font-weight: 600;
+    background: #212121; user-select: none; color: #e0e0e0;
+  }
+  details summary:hover { background: #2a2a2a; }
+  details .details-content { padding: 1rem; border-top: 1px solid #333333; }
+
+  .qa-entry { margin: 0.75rem 0; }
+  .qa-q { font-weight: 600; color: #448aff; }
+  .qa-a { margin-top: 0.25rem; padding-left: 0.75rem; border-left: 2px solid #333333; }
+
+  .takeaway-list { list-style: none; padding: 0; }
+  .takeaway-list li {
+    padding: 0.5rem 0 0.5rem 1.5rem; position: relative;
+  }
+  .takeaway-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.8rem;
+    width: 8px; height: 8px; border-radius: 50%; background: #448aff;
+  }
+
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #333333; font-size: 0.8rem; color: #424242; }
+</style>
+</head>
+<body>
+
+<h1>CONCEPT_NAME</h1>
+<div class="meta">
+  <span>Session: SESSION_DATE</span>
+  <span>Level: KNOWLEDGE_LEVEL</span>
+  <span>Goal: LEARNING_GOAL</span>
+</div>
+
+<!-- SECTION: Architecture / Flow Diagram -->
+<h2>Architecture & Flow</h2>
+<div class="diagram-box" id="diagram-section">
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#616161"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#448aff"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#69f0ae"/>
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#000000"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Region boundary -->
+  <rect x="20" y="20" width="660" height="200" rx="12" fill="none" stroke="#ffd740" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="32" y="40" fill="#ffd740" font-size="9" font-weight="600">ARCHITECTURE_OVERVIEW</text>
+
+  <!-- Component A -->
+  <rect x="60" y="90" width="160" height="60" rx="6" fill="#000000"/>
+  <rect x="60" y="90" width="160" height="60" rx="6" fill="rgba(68,136,255,0.12)" stroke="#448aff" stroke-width="1.5"/>
+  <text x="140" y="119" fill="#e0e0e0" font-size="11" font-weight="600" text-anchor="middle">COMPONENT_A</text>
+  <text x="140" y="135" fill="#757575" font-size="9" text-anchor="middle">A_DESC</text>
+
+  <!-- Arrow A -> B -->
+  <line x1="220" y1="120" x2="260" y2="120" stroke="#616161" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Component B -->
+  <rect x="270" y="90" width="160" height="60" rx="6" fill="#000000"/>
+  <rect x="270" y="90" width="160" height="60" rx="6" fill="rgba(105,240,174,0.12)" stroke="#69f0ae" stroke-width="1.5"/>
+  <text x="350" y="119" fill="#e0e0e0" font-size="11" font-weight="600" text-anchor="middle">COMPONENT_B</text>
+  <text x="350" y="135" fill="#757575" font-size="9" text-anchor="middle">B_DESC</text>
+
+  <!-- Arrow B -> C -->
+  <line x1="430" y1="120" x2="470" y2="120" stroke="#616161" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Component C -->
+  <rect x="480" y="90" width="160" height="60" rx="6" fill="#000000"/>
+  <rect x="480" y="90" width="160" height="60" rx="6" fill="rgba(179,136,255,0.12)" stroke="#b388ff" stroke-width="1.5"/>
+  <text x="560" y="119" fill="#e0e0e0" font-size="11" font-weight="600" text-anchor="middle">COMPONENT_C</text>
+  <text x="560" y="135" fill="#757575" font-size="9" text-anchor="middle">C_DESC</text>
+</svg>
+</div>
+
+<!-- SECTION: Code with Annotations -->
+<h2>Code</h2>
+<div class="code-block" id="code-section">
+<!-- CODE_LINES -->
+</div>
+
+<!-- SECTION: Analogy -->
+<h2>The Analogy</h2>
+<div class="analogy-box" id="analogy-section">
+  <div class="label">Analogy</div>
+  <p id="analogy-text">ANALOGY_TEXT</p>
+</div>
+
+<!-- SECTION: Prediction Challenge -->
+<h2>Prediction Challenges</h2>
+<div id="prediction-section">
+<details id="prediction-1">
+  <summary>PREDICTION_QUESTION</summary>
+  <div class="details-content">
+    <p><strong>Answer:</strong> PREDICTION_ANSWER</p>
+  </div>
+</details>
+<details id="prediction-2">
+  <summary>PREDICTION_QUESTION_2</summary>
+  <div class="details-content">
+    <p><strong>Answer:</strong> PREDICTION_ANSWER_2</p>
+  </div>
+</details>
+</div>
+
+<!-- SECTION: Session Q&A -->
+<h2>Session Q&A</h2>
+<div id="qa-section">
+  <div class="qa-entry">
+    <div class="qa-q">Q: QUESTION_TEXT</div>
+    <div class="qa-a">A: ANSWER_TEXT</div>
+  </div>
+</div>
+
+<!-- SECTION: Summary -->
+<h2>Summary</h2>
+<ul class="takeaway-list" id="summary-section">
+  <li>TAKEAWAY_1</li>
+  <li>TAKEAWAY_2</li>
+  <li>TAKEAWAY_3</li>
+</ul>
+
+<!-- SECTION: Next Steps -->
+<h2>Next Steps</h2>
+<div id="next-steps-section">
+  <details>
+    <summary>Self-quiz: test your understanding</summary>
+    <div class="details-content">
+      <ol>
+        <li>QUIZ_QUESTION_1</li>
+        <li>QUIZ_QUESTION_2</li>
+        <li>QUIZ_QUESTION_3</li>
+      </ol>
+    </div>
+  </details>
+  <p style="margin-top:0.75rem; color:#757575; font-size:0.9rem;">
+    Ready for the next step? Try <code>SUGGESTED_NEXT_TOPIC</code>
+  </p>
+</div>
+
+<footer>
+  Generated by Codebase Mentor | SESSION_DATE
+</footer>
+
+</body>
+</html>

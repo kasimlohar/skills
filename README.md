@@ -5,7 +5,7 @@ My collection of [opencode](https://opencode.ai) agent skills.
 ## Install
 
 ```bash
-npx opencode skills add https://github.com/kasimlohar/skills --skill codebase-mentor
+npx skills add https://github.com/kasimlohar/skills --skill codebase-mentor
 ```
 
 ## Skills
